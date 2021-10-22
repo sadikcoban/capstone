@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Renkler {
   static const Color arkaPlanRengi = Color(0xffF7F8FA);
@@ -25,18 +26,18 @@ class TempYazilar {
   static String aciklamaYazisi = """ 
   Abdullah Gül University is a state university, supported by a philanthropic foundation, located in Kayseri, Turkey. The university, which was inaugurated in 2010, has 5 schools offering 12 undergraduate and 11 graduate programs. All courses at AGU are taught in English
   """;
-  List<String> sehirler = [
+  static List<String> sehirler = [
     "Kırklareli",
     "Kayseri",
     "Ankara",
     "İstanbul",
     "Balıkesir",
     "Niğde",
-    "Adanda",
+    "Adana",
     "Edirne",
     "Aksaray"
   ];
-  List<String> ilceler = [
+  static List<String> ilceler = [
     "babaeski",
     "Lüleburgaz",
     "Talas",
@@ -47,4 +48,58 @@ class TempYazilar {
     "Pınarhisar",
     "Beşiktaş"
   ];
+
+  static List<FotograflarClass> fotolar = [
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+    FotograflarClass(
+      gercekResim: "assets/arac.png",
+      oynanmisResim: "assets/arac_cizilmis.png",
+    ),
+  ];
+  static List<Color> renkListesi = [
+    Colors.indigoAccent,
+    Colors.deepPurple,
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    const Color(0xff2E4765),
+    const Color(0xffFFA101),
+  ];
+}
+
+class FotograflarClass {
+  String gercekResim;
+  String oynanmisResim;
+  FotograflarClass({required this.gercekResim, required this.oynanmisResim});
 }

@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:park_mobil/UI/ParkAlani/line_item.dart';
 import 'package:park_mobil/UI/StaticWidgets/static_widget_class.dart';
 import 'package:park_mobil/UI/StaticWidgets/statik_texts.dart';
+import 'package:stacked/stacked.dart';
 
-class EditlemeViewModel with ChangeNotifier {
+class EditlemeViewModel extends BaseViewModel {
   List<ShapeItems> shapes = [];
   List<LineItems> offsets = [];
   late String resimPath;
@@ -39,6 +40,16 @@ class EditlemeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  setShape({required List<LineItems> list}) {
+
+     List<LineItems> offsets = [...list];
+          shapes.add(ShapeItems(
+            lineItems: offsets,
+          ));
+          list.clear();
+
+  }
+
   onPanUpdate(var details) {
     if (isNearPointStart) {
       offsets[seciliIndex].start = details.localPosition;
@@ -56,43 +67,7 @@ class EditlemeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  onPanEnd(DragEndDetails details) {
-    if (offsets.length > 1) {
-      var lastLine = offsets.last;
-      var prevLine = offsets[offsets.length - 2];
-      if ((prevLine.end - lastLine.start).distanceSquared < 300) {
-        offsets[offsets.length - 2].connected = true;
-        offsets.last.start = offsets[offsets.length - 2].end;
-        notifyListeners();
-      }
-      if ((lastLine.end - offsets[0].start).distanceSquared < 100) {
-        lastLine.connected = true;
-      }
-    }
-
-    if (offsets.any((element) => element.connected == false)) {
-    } else {
-      double xCenter = 0.0;
-      double yCenter = 0.0;
-      for (var element in offsets) {
-        xCenter += element.start.dx;
-        yCenter += element.start.dy;
-      }
-      xCenter = xCenter / (offsets.length);
-      yCenter = yCenter / (offsets.length);
-
-      List<double> xCoords = [];
-      List<double> yCoords = [];
-
-      for (var i = 0; i < offsets.length; i++) {
-        xCoords.add(offsets[i].start.dx);
-        yCoords.add(offsets[i].start.dy);
-      }
-      double area = polygonArea(xCoords, yCoords, offsets.length);
-      shapes.add(ShapeItems(
-          lineItems: offsets, xPos: xCenter, yPos: yCenter, area: area));
-    }
-  }
+  onPanEnd(DragEndDetails details, BuildContext context) {}
 
   double polygonArea(List<double> X, List<double> Y, int n) {
     // Initialize area

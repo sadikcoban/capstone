@@ -1,4 +1,6 @@
 import 'package:park_mobil/UI/Anasayfa/anasayfa_view.dart';
+import 'package:park_mobil/UI/Istatistikler/istatistikler_view.dart';
+import 'package:park_mobil/UI/LoginPage/login_page_view.dart';
 import 'package:park_mobil/UI/ParkAlani/Parklar/parklar_view.dart';
 import 'package:park_mobil/UI/ParkAlani/YeniOtopark/yeni_otopark.dart';
 import 'package:park_mobil/UI/ParkAlani/park_alani_view.dart';
@@ -15,6 +17,8 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: ParkAlaniView),
     MaterialRoute(page: ParklarView),
     MaterialRoute(page: YeniOtopark),
+    MaterialRoute(page: IstatistiklerView),
+    MaterialRoute(page: LoginPageView),
   ],
   dependencies: [
     LazySingleton(

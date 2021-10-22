@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:park_mobil/UI/LoginPage/login_page_view.dart';
 import 'package:park_mobil/app/app.locator.dart';
 import 'package:park_mobil/app/app.router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:syncfusion_localizations/syncfusion_localizations.dart';
-
-import 'UI/Anasayfa/anasayfa_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +58,7 @@ class MainClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Anasayfa(),
+      body: LoginPageView(),
     );
   }
 }

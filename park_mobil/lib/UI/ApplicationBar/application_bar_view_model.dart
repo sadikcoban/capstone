@@ -16,15 +16,12 @@ class ApplicationBarViewModel extends BaseViewModel {
         _navigationService.navigateTo(Routes.rezervasyon);
         break;
       case 2:
-        _navigationService.navigateTo(Routes.rezervasyon);
+        _navigationService.navigateTo(Routes.istatistiklerView);
         break;
       case 3:
         _navigationService.navigateTo(Routes.parklarView);
         break;
       case 4:
-        _navigationService.navigateTo(Routes.rezervasyon);
-        break;
-      case 5:
         _navigationService.navigateTo(Routes.rezervasyon);
         break;
       default:

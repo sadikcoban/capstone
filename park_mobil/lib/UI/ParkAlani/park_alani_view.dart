@@ -43,7 +43,7 @@ class ParkAlaniView extends StatelessWidget {
                         EditlemeWidgets.showOlcuDialog(
                             context, viewBuilder, olcuController);
                       } else {
-                        viewBuilder.onPanEnd(details);
+                        viewBuilder.onPanEnd(details,context);
                       }
                     },
                     child: Container(
@@ -57,7 +57,7 @@ class ParkAlaniView extends StatelessWidget {
                       child: CustomPaint(
                         size: (MediaQuery.of(context).size),
                         painter:
-                            EditlemePainter(viewBuilder.offsets, viewBuilder),
+                            EditlemePainter(viewBuilder.offsets, viewBuilder,viewBuilder.shapes),
                       ),
                     ),
                   ),

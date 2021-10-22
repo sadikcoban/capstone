@@ -8,9 +8,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import '../UI/Anasayfa/anasayfa_view.dart';
+import '../UI/Istatistikler/istatistikler_view.dart';
+import '../UI/LoginPage/login_page_view.dart';
 import '../UI/ParkAlani/Parklar/parklar_view.dart';
 import '../UI/ParkAlani/YeniOtopark/yeni_otopark.dart';
 import '../UI/ParkAlani/park_alani_view.dart';
@@ -24,6 +25,8 @@ class Routes {
   static const String parkAlaniView = '/park-alani-view';
   static const String parklarView = '/parklar-view';
   static const String yeniOtopark = '/yeni-otopark';
+  static const String istatistiklerView = '/istatistikler-view';
+  static const String loginPageView = '/login-page-view';
   static const all = <String>{
     mainClass,
     anasayfa,
@@ -31,6 +34,8 @@ class Routes {
     parkAlaniView,
     parklarView,
     yeniOtopark,
+    istatistiklerView,
+    loginPageView,
   };
 }
 
@@ -44,6 +49,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.parkAlaniView, page: ParkAlaniView),
     RouteDef(Routes.parklarView, page: ParklarView),
     RouteDef(Routes.yeniOtopark, page: YeniOtopark),
+    RouteDef(Routes.istatistiklerView, page: IstatistiklerView),
+    RouteDef(Routes.loginPageView, page: LoginPageView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -81,6 +88,18 @@ class StackedRouter extends RouterBase {
     YeniOtopark: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const YeniOtopark(),
+        settings: data,
+      );
+    },
+    IstatistiklerView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const IstatistiklerView(),
+        settings: data,
+      );
+    },
+    LoginPageView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const LoginPageView(),
         settings: data,
       );
     },

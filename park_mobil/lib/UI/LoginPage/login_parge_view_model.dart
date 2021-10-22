@@ -4,21 +4,10 @@ import 'package:park_mobil/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ParklarViewModel extends BaseViewModel {
-  late ScrollController scrollController =
-      ScrollController();
-
-  Future onModalReady() async {
-    try {
-      notifyListeners();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
+class LoginPageViewModel extends BaseViewModel {
+  TextEditingController emialController = TextEditingController();
   final _navigationService = locator<NavigationService>();
   navigateTo() {
-    _navigationService.navigateTo(Routes.yeniOtopark);
-    notifyListeners();
+    _navigationService.navigateTo(Routes.anasayfa);
   }
 }

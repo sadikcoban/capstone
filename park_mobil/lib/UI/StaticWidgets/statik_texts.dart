@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -211,6 +212,100 @@ class StatikTexts {
           ),
         ),
       ),
+    );
+  }
+
+  static dropDownString(
+      {required String labelText,
+      required List<String> liste,
+      required String secilenItem,
+      required Function(String?) onchanged}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      child: DropdownSearch<String>(
+        mode: Mode.DIALOG,
+        dropdownSearchDecoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(
+              color: Renkler.ikonAktif,
+              fontSize: 18,
+              fontWeight: FontWeight.bold),
+          filled: true,
+          border: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF01689A)),
+          ),
+        ),
+        showAsSuffixIcons: true,
+        clearButtonBuilder: (_) => const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Icon(
+            Icons.clear,
+            size: 24,
+            color: Colors.black,
+          ),
+        ),
+        dropdownButtonBuilder: (_) => const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Icon(
+            Icons.arrow_drop_down,
+            size: 24,
+            color: Colors.black,
+          ),
+        ),
+        showSelectedItems: true,
+        items: liste,
+        showClearButton: true,
+        onChanged: onchanged,
+        selectedItem: secilenItem,
+      ),
+    );
+  }
+
+  static Future<void> showInitialDialog(
+      {required BuildContext context,
+      required Widget liste,
+      required String isim}) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          insetPadding: const EdgeInsets.all(3),
+          elevation: 10,
+          content: SizedBox(
+            height: (MediaQuery.of(context).size.height / 3) * 2,
+            width: (MediaQuery.of(context).size.height / 3) * 3,
+            child: ListView(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    StatikTexts.yaziText(
+                        text: isim,
+                        yaziRengi: Renkler.ikonAktif,
+                        weight: FontWeight.bold,
+                        size: 24),
+                    IconButton(
+                        alignment: Alignment.bottomRight,
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.close,
+                          size: 30,
+                          color: Colors.red,
+                        )),
+                  ],
+                ),
+                liste
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

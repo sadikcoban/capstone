@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:park_mobil/UI/ApplicationBar/application_bar_view_model.dart';
@@ -7,7 +6,7 @@ import 'package:park_mobil/UI/StaticWidgets/statik_texts.dart';
 import 'package:stacked/stacked.dart';
 
 class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
- const AppliactionBarView({ Key? key }) : super(key: key);
+  const AppliactionBarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ApplicationBarViewModel>.reactive(
@@ -16,7 +15,7 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: Renkler.appBarRengi,
         elevation: 0.0,
         actions: [
-         const SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Center(
@@ -28,7 +27,7 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                   fontSize: 20),
             ),
           ),
-        const  Spacer(
+          const Spacer(
             flex: 2,
           ),
           GestureDetector(
@@ -45,7 +44,7 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                 yazi: "Anasayfa",
                 icon: Icons.home),
           ),
-         const Spacer(),
+          const Spacer(),
           GestureDetector(
             onTap: () {
               model.navigateTo(1);
@@ -60,7 +59,7 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                 yazi: "Rezervasyon",
                 icon: Icons.calendar_today),
           ),
-         const Spacer(),
+          const Spacer(),
           GestureDetector(
             onTap: () {
               model.navigateTo(2);
@@ -75,7 +74,7 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                 yazi: "İstatistikler",
                 icon: Icons.pie_chart),
           ),
-         const Spacer(),
+          const Spacer(),
           GestureDetector(
             onTap: () {
               model.navigateTo(3);
@@ -90,25 +89,10 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                 yazi: "Park Alanı",
                 icon: Icons.car_rental),
           ),
-        const  Spacer(),
+          const Spacer(),
           GestureDetector(
             onTap: () {
               model.navigateTo(4);
-            },
-            child: StatikTexts.ikonVeText(
-                ikonColor: model.currentIndex == 3
-                    ? Renkler.ikonAktif
-                    : Renkler.ikonPasif,
-                textColor: model.currentIndex == 3
-                    ? Renkler.textAktif
-                    : Renkler.textPasif,
-                yazi: "Mesajlar",
-                icon: Icons.message),
-          ),
-         const  Spacer(),
-          GestureDetector(
-            onTap: () {
-              model.navigateTo(5);
             },
             child: StatikTexts.ikonVeText(
                 ikonColor: model.currentIndex == 4
@@ -120,12 +104,12 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
                 yazi: "Ayarlar",
                 icon: Icons.settings),
           ),
-         const Spacer(
+          const Spacer(
             flex: 2,
           ),
           GestureDetector(
             onTap: () {
-              model.navigateTo(6);
+              model.navigateTo(5);
             },
             child: StatikTexts.ikonVeText(
               ikonColor: const Color(0xffF35162),
@@ -134,14 +118,14 @@ class AppliactionBarView extends StatelessWidget with PreferredSizeWidget {
               icon: Icons.logout,
             ),
           ),
-       const   Spacer(),
+          const Spacer(),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize =>const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class AppBarProvider with ChangeNotifier {

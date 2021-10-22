@@ -1,12 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:park_mobil/UI/ParkAlani/editleme_view_model.dart';
 import 'package:park_mobil/UI/ParkAlani/line_item.dart';
 
 class EditlemePainter extends CustomPainter {
-  final List<LineItems> offsets;
+  List<LineItems> offsets = [];
   final EditlemeViewModel provider;
-
-  EditlemePainter(this.offsets, this.provider) : super();
+  List<ShapeItems> shapeItem = [];
+  EditlemePainter(this.offsets, this.provider, this.shapeItem) : super();
 
   @override
   void paint(
@@ -16,42 +18,39 @@ class EditlemePainter extends CustomPainter {
     final paint = Paint()
       ..isAntiAlias = true
       ..strokeWidth = 2.0;
+    log("inside paint: line length: ${offsets.length} shape length:${shapeItem.length}");
 
+    log("aa");
+    for (var i = 0; i < shapeItem.length; i++) {
+      log("$i shaoede");
+      // paint.color = offsets[i].color;
+      paint.color = Colors.blue;
+      canvas.drawPath(
+          Path()
+            ..addPolygon([
+              shapeItem[i].lineItems[0].start,
+              shapeItem[i].lineItems[1].start,
+              shapeItem[i].lineItems[2].start,
+              shapeItem[i].lineItems[3].start,
+            ], true),
+          paint);
+    }
+
+    log("bb");
     for (var i = 0; i < offsets.length; i++) {
-      paint.color = offsets[i].color;
-      TextSpan span =  TextSpan(
-          style:  TextStyle(
-              color: Colors.blue[800], fontSize: 20.0, fontFamily: 'Roboto'),
-          text: "${offsets[i].uzunluk.toStringAsFixed(1)} m");
-      TextPainter tp =  TextPainter(
-        text: span,
-        textDirection: TextDirection.ltr,
-        textAlign: TextAlign.center,
-      );
-      tp.layout();
-      double textX = ((offsets[i].start.dx + offsets[i].end.dx) / 2) - 30;
-      double textY = (offsets[i].start.dy + offsets[i].end.dy) / 2;
-      if (provider.olcuAlindi) tp.paint(canvas,  Offset(textX, textY));
-      if (provider.shapes.isNotEmpty) {
-        for (var item in provider.shapes) {
-          span =  TextSpan(
-              style:  TextStyle(
-                  color: Colors.blue[800],
-                  fontSize: 20.0,
-                  fontFamily: 'Roboto'),
-              text: "${item.area.toStringAsFixed(2)} m");
-          tp =  TextPainter(
-            text: span,
-            textDirection: TextDirection.ltr,
-            textAlign: TextAlign.center,
-          );
-          textX = item.xPos;
-          textY = item.yPos;
-          tp.layout();
-          tp.paint(canvas,  Offset(textX, textY));
-        }
+      log("$i lşnede");
+      paint.color = Colors.red;
+      if (i > 0) {
+        canvas.drawLine(offsets[i - 1].start, offsets[i].start, paint);
       }
-      canvas.drawLine(offsets[i].start, offsets[i].end, paint);
+      if (i == 3) {
+        canvas.drawLine(offsets[0].start, offsets[3].start, paint);
+        shapeItem.add(ShapeItems(
+          lineItems: offsets,
+        ));
+        offsets = <LineItems>[];
+      }
+
       canvas.drawCircle(offsets[i].start, 10, paint);
       canvas.drawCircle(offsets[i].end, 10, paint);
     }

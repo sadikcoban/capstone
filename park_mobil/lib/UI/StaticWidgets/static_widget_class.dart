@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,6 +6,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:park_mobil/UI/StaticWidgets/padding_static_class.dart';
+import 'package:park_mobil/UI/StaticWidgets/renkler.dart';
+import 'package:park_mobil/UI/StaticWidgets/statik_texts.dart';
 
 class StaticWidgetClass {
   // cihazın pixelliğine göre bir oran (I phone x e göre ayarlanmıştır. 2.75in sebebi odur.)
@@ -83,7 +83,7 @@ class StaticWidgetClass {
       TextAlign textAlign = TextAlign.center,
       double horizontalPadding = 0,
       double verticalPadding = 0,
-      int maxLine =50}) {
+      int maxLine = 50}) {
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: verticalPadding, horizontal: horizontalPadding),
@@ -96,7 +96,6 @@ class StaticWidgetClass {
         1.06,
         textAlign,
         context,
-        
       ),
     );
   }
@@ -109,7 +108,7 @@ class StaticWidgetClass {
           height: 16.0,
           decoration: BoxDecoration(shape: BoxShape.circle, color: color),
         ),
-       const SizedBox(
+        const SizedBox(
           width: 2,
         )
       ],
@@ -123,11 +122,11 @@ class StaticWidgetClass {
     required String kisaIsim,
     Color yaziRengi = Colors.black,
     Color containerRengi = const Color(0xFFDCDEE0),
-    String url="",
-    double disCap=20,
-    double icCap=17,
+    String url = "",
+    double disCap = 20,
+    double icCap = 17,
   }) {
-    if (url!="") {
+    if (url != "") {
       return CachedNetworkImage(
         imageUrl: url,
         errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -146,8 +145,7 @@ class StaticWidgetClass {
           ),
         ),
       );
-    } else {
-    }
+    } else {}
     return Padding(
       padding: EdgeInsets.only(right: MediaQuery.of(context).size.width / 20),
       child: Container(
@@ -181,7 +179,7 @@ class StaticWidgetClass {
           child: StaticWidgetClass.specialText(titleName, 1, baslikRenk,
               FontWeight.w400, 15, 1.33, TextAlign.left, context),
         ),
-      const  SizedBox(
+        const SizedBox(
           height: 3,
         ),
         Container(
@@ -189,7 +187,7 @@ class StaticWidgetClass {
           child: StaticWidgetClass.specialText(answer, 1, yaziRenk,
               FontWeight.w400, 16, 1.25, TextAlign.left, context),
         ),
-      const  SizedBox(
+        const SizedBox(
           height: 15,
         ),
       ],
@@ -210,7 +208,7 @@ class StaticWidgetClass {
           child: StaticWidgetClass.specialText(
               baslik, 1, color, extraWeight, height, 0.94, textAlign, context),
         ),
-       const   SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],
@@ -303,13 +301,11 @@ class StaticWidgetClass {
       mainAxisAlignment: alignment,
       children: [
         icon,
-        Expanded(
-          child: StaticWidgetClass.itemYazi(
-            context: context,
-            baslik: baslik,
-            fontSize: fontSize,
-            color: color,
-          ),
+        StaticWidgetClass.itemYazi(
+          context: context,
+          baslik: baslik,
+          fontSize: fontSize,
+          color: color,
         ),
       ],
     );
@@ -322,42 +318,44 @@ class StaticWidgetClass {
     bool isLoading = false,
   }) {
     return Container(
-      alignment: const  Alignment(0.0, 0.1),
-      height: 52.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100.0),
-        color: color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.16),
-            offset: const  Offset(0, 3.0),
-            blurRadius: 6.0,
-          ),
-        ],
-      ),
-      child: isLoading
-          ?const Center(
-              child: SizedBox(
-                height: 20,
-                width: 20,
-                child:   CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    StaticWidgetClass.koyuMavi,
+        alignment: const Alignment(0.0, 0.1),
+        height: 52.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: color,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.16),
+              offset: const Offset(0, 3.0),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: isLoading
+            ? const Center(
+                child: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      StaticWidgetClass.koyuMavi,
+                    ),
                   ),
                 ),
-              ),
-            )
-          : StaticWidgetClass.specialText(
-              baslik,
-              1,
-              Colors.white,
-              FontWeight.w600,
-              18,
-              0.94,
-              TextAlign.center,
-              context,
-            ),
-    );
+              )
+            : Padding(
+                padding: const EdgeInsets.all(5),
+                child: StaticWidgetClass.specialText(
+                  baslik,
+                  1,
+                  Colors.white,
+                  FontWeight.w600,
+                  18,
+                  0.94,
+                  TextAlign.center,
+                  context,
+                ),
+              ));
   }
 
   static loginTextField(
@@ -368,58 +366,71 @@ class StaticWidgetClass {
       bool obscure = false,
       int limit = 10000,
       int maxLine = 1}) {
-    var padding = PaddingStaticClass().allPaddingRate(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: padding, vertical: padding / 2),
-      child: Container(
-        height: height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13.0),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.16),
-              offset: const  Offset(0, 2.0),
-              blurRadius: 4.0,
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StatikTexts.yaziText(
+                text: hint,
+                yaziRengi: Renkler.textPasif,
+                size: 18,
+                weight: FontWeight.bold,
+                align: TextAlign.left),
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(13.0),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.16),
+                    offset: const Offset(0, 2.0),
+                    blurRadius: 4.0,
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                child: TextField(
+                  maxLines: maxLine,
+                  // sicil no controller
+                  controller: controller,
+                  // giriş sadece numeric kalvye ile olacak
+                  keyboardType: TextInputType.text,
+                  // sitili
+                  style: GoogleFonts.roboto(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                  obscureText: obscure,
+                  // dekorasyon
+                  decoration: const InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      //  text tıklanmadığındaki rengi
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      //  Text tıklanınca rengi
+                    ),
+                    // alttan çizgi olacak
+                    border: UnderlineInputBorder(),
+                  ),
+                ),
+              ),
             ),
           ],
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(
-              left: PaddingStaticClass().allPaddingRate(context)),
-          child: TextField(
-            maxLines: maxLine,
-            // sicil no controller
-            controller: controller,
-            // giriş sadece numeric kalvye ile olacak
-            keyboardType: TextInputType.text,
-            // sitili
-            style: GoogleFonts.roboto(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ),
-            obscureText: obscure,
-            // dekorasyon
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: GoogleFonts.roboto(
-                fontSize: 18.0,
-                color: Colors.black,
-              ),
-              enabledBorder: const  UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-                //  text tıklanmadığındaki rengi
-              ),
-              focusedBorder: const  UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-                //  Text tıklanınca rengi
-              ),
-              // alttan çizgi olacak
-              border: const  UnderlineInputBorder(),
-            ),
-          ),
         ),
       ),
     );
@@ -430,8 +441,8 @@ class StaticWidgetClass {
       color: Colors.grey.withOpacity(0.4),
       child: Center(
         child: Container(
-          decoration:const BoxDecoration(
-              borderRadius:  BorderRadius.all(Radius.circular(10))),
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -446,7 +457,7 @@ class StaticWidgetClass {
                   );
                 },
               ),
-             const SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               StaticWidgetClass.generalIconFunc(30, 30, 'logo'),
@@ -473,7 +484,7 @@ class StaticWidgetClass {
     String msg,
     Color backgroundColor,
     Color textColor, {
-    icon= Icons,
+    icon = Icons,
   }) {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
@@ -483,7 +494,7 @@ class StaticWidgetClass {
             icon,
             color: textColor,
           ),
-         const   SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
@@ -504,7 +515,7 @@ class StaticWidgetClass {
         children: [
           Checkbox(
             onChanged: (_) {
-             onTap();
+              onTap();
             },
             value: deger,
             checkColor: Colors.white,
