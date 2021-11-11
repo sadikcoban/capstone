@@ -36,7 +36,7 @@ class StaticWidgetClass {
       '$text',
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
-      style: GoogleFonts.roboto(
+      style: GoogleFonts.montserrat(
         color: color,
         fontWeight: fontWeight,
         fontSize: Platform.isIOS ? fontSize * rateText(context) : fontSize,
@@ -74,7 +74,7 @@ class StaticWidgetClass {
     );
   }
 
-  static itemYazi(
+  static Widget itemYazi(
       {required BuildContext context,
       required String? baslik,
       double fontSize = 17,
@@ -291,16 +291,19 @@ class StaticWidgetClass {
     required BuildContext context,
     required Icon icon,
     required String baslik,
-    double height = 15,
     Color color = Colors.grey,
     MainAxisAlignment alignment = MainAxisAlignment.center,
     double fontSize = 15,
+    double width = 15,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: alignment,
       children: [
         icon,
+        SizedBox(
+          width: width,
+        ),
         StaticWidgetClass.itemYazi(
           context: context,
           baslik: baslik,
@@ -375,10 +378,10 @@ class StaticWidgetClass {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StaticWidgetClass.itemYazi(
-              context: context,
+                context: context,
                 baslik: hint,
                 color: Renkler.textPasif,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.left),
             const SizedBox(
@@ -525,6 +528,89 @@ class StaticWidgetClass {
           StaticWidgetClass.specialText(baslik, 1, Colors.black,
               FontWeight.w500, 18, 1, TextAlign.left, context),
         ],
+      ),
+    );
+  }
+
+  static Future<void> showInitialDialog(
+      {required BuildContext context,
+      required Widget liste,
+      required String isim}) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          scrollable: true,
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          insetPadding: const EdgeInsets.all(3),
+          elevation: 10,
+          content: SizedBox(
+            height: 450,
+            width: 500,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    StaticWidgetClass.itemYazi(
+                        context: context,
+                        baslik: isim,
+                        color: Renkler.morRenk,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
+                    IconButton(
+                        alignment: Alignment.bottomRight,
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.close,
+                          size: 30,
+                          color: Colors.red,
+                        )),
+                  ],
+                ),
+                liste
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static Widget butonWithBorder({
+    required BuildContext context,
+    required String text,
+    required Color textColor,
+    required Color butonColor,
+    required Color butonBorderColor,
+    required double width,
+    required double height,
+  }) {
+    return // Group: Group 8
+        Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        alignment: const Alignment(0.0, 0.03),
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: butonColor,
+          border: Border.all(
+            width: 1.0,
+            color: butonBorderColor,
+          ),
+        ),
+        child: StaticWidgetClass.itemYazi(
+            context: context,
+            baslik: text,
+            color: textColor,
+            fontWeight: FontWeight.w700),
       ),
     );
   }

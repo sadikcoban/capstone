@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:park_desktop/Intro/intro_main_page.dart';
+import 'package:park_desktop/splash_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 
@@ -42,7 +44,6 @@ Future<void> main() async {
       ),
       title: 'Otopark Yönetim',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xffF0F1F2),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           showSelectedLabels: true,
         ),
@@ -58,6 +59,13 @@ class MainClass extends StatelessWidget {
   const MainClass({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: IntroMainPage());
+    return const Scaffold(body: SplashScreen());
+  }
+}
+
+class MainClassViewModel extends BaseViewModel {
+  getShared() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.get('splash');
   }
 }

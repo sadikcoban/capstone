@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Renkler {
-  static Color backgroundColor = const Color(0xffF7F7FA);
+  static Color backgroundColor = const Color(0xffF4F4F4);
   static Color morRenk = const Color(0xff4048BF);
   static Color morKapali = const Color(0xff4048BF);
   static Color siyahRenk = const Color(0xff0D1724);

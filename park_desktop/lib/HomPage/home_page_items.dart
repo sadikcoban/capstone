@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:park_desktop/StaticWidgets/renkler.dart';
-
+import 'package:park_desktop/StaticWidgets/static_widget_class.dart';
 class HomePageItems {
   setAvatar() {
     return Container(
@@ -154,7 +154,6 @@ class HomePageItems {
       ),
     );
   }
-
   getInfo(String title, String desc, Color color) {
     return Container(
       width: 170.0,
@@ -289,6 +288,43 @@ class HomePageItems {
           ),
         ],
       ),
+    );
+  }
+
+  carGeneralInfo(
+      {required BuildContext context,
+      required String carBrand,
+      required String carModel,
+      required String plateNumber,
+      required String color,
+      required String year}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Image.asset(
+          "images/clio.png",
+          height: 200,
+        ),
+        StaticWidgetClass.yanYanaYazilar(
+            context: context,
+            baslik: "Araba Markası",
+            item: carBrand,
+            padding: 10),
+        StaticWidgetClass.yanYanaYazilar(
+            context: context,
+            baslik: "Araba Modeli",
+            item: carModel,
+            padding: 10),
+        StaticWidgetClass.yanYanaYazilar(
+            context: context,
+            baslik: "Plaka Numarası",
+            item: plateNumber,
+            padding: 10),
+        StaticWidgetClass.yanYanaYazilar(
+            context: context, baslik: "Araba Rengi", item: color, padding: 10),
+        StaticWidgetClass.yanYanaYazilar(
+            context: context, baslik: "Yıl", item: year, padding: 10),
+      ],
     );
   }
 }

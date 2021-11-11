@@ -12,9 +12,7 @@ class Tabbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-        color: Renkler.arkaPlanRengi,
-      ),
+      color: Renkler.appBarRengi,
       child: DefaultTabController(
         length: basliklar.length,
         child: Scaffold(
@@ -22,16 +20,20 @@ class Tabbar extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(35.0),
             child: TabBar(
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 15),
-              isScrollable: true,
-              indicatorColor: Colors.black,
-              unselectedLabelColor: Colors.black,
-              labelColor: Colors.black,
-              tabs: basliklar.map((String item) {
-                return StaticWidgetClass.itemYazi(
-                    context: context, baslik: item, fontSize: 20);
-              }).toList() as List<Widget>,
-            ),
+                indicatorPadding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                isScrollable: true,
+                indicatorColor: Colors.black,
+                unselectedLabelColor: Colors.black,
+                labelColor: Colors.black,
+                tabs: basliklar.map((String item) {
+                  return StaticWidgetClass.itemYazi(
+                    context: context,
+                    baslik: item,
+                    fontSize: 17,
+                  );
+                }).toList()),
           ),
           body: TabBarView(
             children: merkezler.map((Widget widget) {
