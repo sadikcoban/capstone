@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-auth-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capstone-auth-mongo
+  template:
+    metadata:
+      labels:
+        app: capstone-auth-mongo
+    spec:
+      containers:
+        - name: auth-mongo
+          image: mongo
+
+

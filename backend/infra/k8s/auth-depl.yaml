@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capstone-auth
+  template:
+    metadata:
+      labels:
+        app: capstone-auth
+    spec:
+      containers:
+        - name: capstone-auth
+          image: capstone/capstone-auth
+          imagePullPolicy: Never
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY

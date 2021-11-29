@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carpark-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carpark
+  template:
+    metadata:
+      labels:
+        app: carpark
+    spec:
+      containers:
+        - name: carpark
+          image: capstone/carpark
+         # imagePullPolicy: Never
+         

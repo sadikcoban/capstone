@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: capstone-ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: capstone.dev
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: capstone-auth-srv
+                port:
+                  number: 3000
+
+          - path: /api/carpark/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: carpark-srv
+                port:
+                  number: 4001
