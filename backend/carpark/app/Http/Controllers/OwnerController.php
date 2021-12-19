@@ -3,30 +3,32 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Owner;
+use App\Http\Requests\CreateOwnerRequest;
 
 class OwnerController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function dene(){
-        $res = Owner::query()->get();
-        print_r($res);
-    }
+   
 
-    public function create(){
-        $new = new Owner();
-        $new->name = "DENEME OWNER";
-        $new->save();
-        return response("success", 200);
-    }
-
-    public function show(){
-        $obj = Owner::query()->get();
+    public function store(CreateOwnerRequest $request ){
+        
+        $new =  Owner::create($request->all());
        
-        return response(["data"=>$obj]);
+        return success_response($new);
+    }
+
+    public function index(){
+        return success_response(Owner::query()->get());
+    }
+
+    public function show(int $id){
+        $owner = Owner::query()->where("id", $id)->first();
+
+        if(!$owner){
+            return failure_response(["Veri bulunamadı"]);
+        }
+
+       
+        return success_response($owner);
     }
 
     

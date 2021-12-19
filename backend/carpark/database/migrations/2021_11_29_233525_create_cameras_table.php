@@ -16,6 +16,7 @@ class CreateCamerasTable extends Migration
         Schema::create('cameras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('floor_id')
+                    
                     ->constrained('floors')
                     ->onUpdate('CASCADE')
                     ->onDelete('RESTRICT');

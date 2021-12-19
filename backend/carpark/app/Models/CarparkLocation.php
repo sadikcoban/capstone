@@ -21,13 +21,15 @@ class CarparkLocation extends Model
     protected $fillable = [
         'owner_id',
         'address',
+        'city_id',
         'capacity',
         'start_hour',
         'end_hour',
         'lat',
         'lon',
         'is_active',
-
+        'price_per_hour',
+        "explanation",
     ];
 
    

@@ -20,12 +20,12 @@ class CreateLotsTable extends Migration
                     ->constrained('cameras')
                     ->onUpdate('CASCADE')
                     ->onDelete('RESTRICT');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->string('name');
-            $table->string('coord_x1');
-            $table->string('coord_x2');
-            $table->string('coord_y1');
-            $table->string('coord_y2');
+            $table->double('coord_x1');
+            $table->double('coord_x2');
+            $table->double('coord_y1');
+            $table->double('coord_y2');
             $table->timestamps();
         });
     }

@@ -26,11 +26,12 @@ class Owner extends Model
         'iban',
         'address',
         'mail',
+        'password'
 
     ];
 
     protected $hidden = [
-        'password'
+        
     ];
   
 }

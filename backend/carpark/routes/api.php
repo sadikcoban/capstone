@@ -14,8 +14,28 @@
 */
 
 $router->group(["prefix"=>"/api/carpark"], function () use ($router){
-    $router->get('/', "\App\Http\Controllers\OwnerController@dene");
-    $router->get('/create', "\App\Http\Controllers\OwnerController@create");
-    $router->get('/show', "\App\Http\Controllers\OwnerController@show");
+
+    $router->group(["prefix" => "/owner"], function () use($router){
+        $router->get('', "\App\Http\Controllers\OwnerController@index");
+        $router->post('', "\App\Http\Controllers\OwnerController@store");
+        $router->get('/{id}', "\App\Http\Controllers\OwnerController@show");
+
+
+    });
+
+    $router->group(["prefix" => "/carpark-location"], function () use($router){
+        $router->post('', "\App\Http\Controllers\CarparkLocationController@store");
+        $router->get('/{id}', "\App\Http\Controllers\CarparkLocationController@show");
+
+        $router->get('/of/{owner_id}', "\App\Http\Controllers\CarparkLocationController@index");   
+        $router->post('/with-lots', "\App\Http\Controllers\CarparkLocationController@createWithLots");
+        
+        $router->get('/near-locations/{city_id}', "\App\Http\Controllers\CarparkLocationController@getNearLocations");   
+
+
+
+    });
+
+
 
 });
