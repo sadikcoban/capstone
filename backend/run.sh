@@ -1,4 +1,4 @@
 #/bin/bash
 eval $(minikube -p custom docker-env)
-minikube start
+#minikube start
 skaffold dev

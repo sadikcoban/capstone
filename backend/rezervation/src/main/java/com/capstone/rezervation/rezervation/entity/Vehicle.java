@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "users")
+@Table( name = "vehicles")
 
-public class User {
+public class Vehicle {
     @Id
     private String id;
-    private String name;
-    private String surname;
+    private String plate;
+    private String userId;
 
     
 }

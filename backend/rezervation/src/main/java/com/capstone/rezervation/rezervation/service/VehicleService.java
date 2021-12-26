@@ -3,46 +3,44 @@ package com.capstone.rezervation.rezervation.service;
 import java.util.List;
 
 import com.capstone.rezervation.rezervation.entity.User;
+import com.capstone.rezervation.rezervation.entity.Vehicle;
 import com.capstone.rezervation.rezervation.repository.UserRepository;
+import com.capstone.rezervation.rezervation.repository.VehicleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class VehicleService {
     @Autowired
-    private UserRepository repository;
+    private VehicleRepository repository;
 
-    public User saveUser(User user) {
+    public Vehicle saveVehicle(Vehicle vehicle) {
         System.out.println("saving user");
-        return repository.save(user);
-    }
-
-    public List<User> saveUsers(List<User> users) {
-        return repository.saveAll(users);
-
+        return repository.save(vehicle);
     }
 
 
-    public List<User> getUsers(){
+    public List<Vehicle> getVehicles(){
         return repository.findAll();
     }
 
-    public User getUserById(String id){
+    public Vehicle getVehicleById(String id){
         return repository.findById(id).orElse(null);
     }
 
-    public User getUserByName(String name){
-        return repository.findByName(name);
-    }
+  
 
-    public String deleteUser(String id){
+    public String deleteVehicle(String id){
         repository.deleteById(id);
         return "USer Deleted " + id;
-    }/*
-
-    public User updateUser(User user){
-       User existingUser = repository.findById(user.getId()).orElse(null);
+    }
+    
+    
+/*
+    public Vehicle updateVehicle(Vehicle vehicle){
+       Vehicle existingVehicle = repository.findById(vehicle.getId()).orElse(null);
+       existingVehicle.setPlate(vehicl);
        existingUser.setName(user.getName());
        existingUser.setSurname(user.getSurname());
        return repository.save(existingUser);

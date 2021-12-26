@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS rezervation.vehicles (
-  id INT NOT NULL AUTO_INCREMENT,
+  id VARCHAR(255) NOT NULL,
   plate VARCHAR(50) NOT NULL,
   user_id INT,
   PRIMARY KEY (ID),

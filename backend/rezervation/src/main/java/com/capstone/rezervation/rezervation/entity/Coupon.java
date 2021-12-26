@@ -16,13 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "users")
+@Table( name = "coupons")
 
-public class User {
+public class Coupon {
     @Id
     private String id;
     private String name;
-    private String surname;
+    private String explanation;
+    private Double discountRate;
+    private String userId;
 
     
 }

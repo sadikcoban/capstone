@@ -23,8 +23,16 @@ public class UserController {
     private UserService service;
 
     @PostMapping("/adduser")
-    public User addUser(@RequestParam(value="name", required=true) String name, @RequestParam(value="surname", required=true) String surname){
+    public User addUser(@RequestParam(value="id", required=true) String id,@RequestParam(value="name", required=true) String name, @RequestParam(value="surname", required=true) String surname){
         User newUser = new User();
+        newUser.setId(id);
+        newUser.setName(name);
+        newUser.setSurname(surname);
+        return service.saveUser(newUser);
+    }
+    public User addUserEvent(String id,String name,String surname){
+        User newUser = new User();
+        newUser.setId(id);
         newUser.setName(name);
         newUser.setSurname(surname);
         return service.saveUser(newUser);
@@ -35,17 +43,17 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable int id){
+    public User getUser(@PathVariable String id){
         return service.getUserById(id);
     }
-
+/*
     @PutMapping(value="/update")
     public User updateUser(@RequestBody User user) {
         return service.updateUser(user);
-    }
+    }*/
 
-    @DeleteMapping(value="/delete/{id}")
-    public String deleteUser(@PathVariable int id){
+    @DeleteMapping(value="/user/delete/{id}")
+    public String deleteUser(@PathVariable String id){
         return service.deleteUser(id);
     }
     

@@ -19,13 +19,31 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, phone, name, surname, address, birthDate, balance, password } = req.body;
+    const {
+      email,
+      phone,
+      name,
+      surname,
+      address,
+      birthDate,
+      balance,
+      password,
+    } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new BadRequestError("Email in use");
     }
- 
-    const user = User.build({ email, phone, name, surname, address, birthDate, balance, password });
+
+    const user = User.build({
+      email,
+      phone,
+      name,
+      surname,
+      address,
+      birthDate,
+      balance,
+      password,
+    });
     await user.save();
     /*
     //generate jwt
@@ -42,6 +60,7 @@ router.post(
       jst: userJwt,
     };
    */
+    console.log("dsasd");
     return res.status(201).send(user);
   }
 );

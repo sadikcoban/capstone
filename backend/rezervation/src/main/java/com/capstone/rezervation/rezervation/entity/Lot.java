@@ -3,11 +3,10 @@ package com.capstone.rezervation.rezervation.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -16,13 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "users")
+@Table( name = "lots")
 
-public class User {
+public class Lot {
     @Id
-    private String id;
-    private String name;
-    private String surname;
+    private int id;
+    private String status;
+    private String wrongPlate;
+    private String lotName;
+    private String floorName;
 
     
 }
