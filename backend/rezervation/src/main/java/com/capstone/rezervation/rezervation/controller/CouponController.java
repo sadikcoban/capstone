@@ -35,21 +35,20 @@ public class CouponController {
         newCoupon.setId(id);
         newCoupon.setName(name);
         newCoupon.setExplanation(explanation);
-        newCoupon.setUserId(userId);
-        newCoupon.setDiscountRate(discountRate);
+        newCoupon.setUser_id(userId);
+        newCoupon.setDiscount_rate(discountRate);
         return service.saveCoupon(newCoupon);
     }
 
-    public Coupon addCouponEvent(String id,String name, String explanation,String userId, Double discountRate) {
-Coupon newCoupon = new Coupon();
-newCoupon.setId(id);
-newCoupon.setName(name);
-newCoupon.setExplanation(explanation);
-newCoupon.setUserId(userId);
-newCoupon.setDiscountRate(discountRate);
-return service.saveCoupon(newCoupon);
-}
-
+    public Coupon addCouponEvent(String id, String name, String explanation, String userId, Double discountRate) {
+        Coupon newCoupon = new Coupon();
+        newCoupon.setId(id);
+        newCoupon.setName(name);
+        newCoupon.setExplanation(explanation);
+        newCoupon.setUser_id(userId);
+        newCoupon.setDiscount_rate(discountRate);
+        return service.saveCoupon(newCoupon);
+    }
 
     @GetMapping("/coupon/{id}")
     public Coupon getCoupon(@PathVariable String id) {

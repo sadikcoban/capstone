@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class Lot {
     @Id
     private int id;
+    private int floor_id;
     private String status;
-    private String wrongPlate;
-    private String lotName;
-    private String floorName;
+    private String wrong_plate;
+    private String lot_name;
 
     
 }

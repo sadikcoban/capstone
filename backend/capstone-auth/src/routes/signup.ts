@@ -5,11 +5,11 @@ import { BadRequestError } from "../errors/bad-request-error";
 import { validateRequest } from "../middlewares/validate-request";
 
 import jwt from "jsonwebtoken";
-
+import nats from "node-nats-streaming"
 const router = express.Router();
 
 router.post(
-  "/api/users/signup",
+  "/api/auth/signup",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password")
@@ -45,6 +45,21 @@ router.post(
       password,
     });
     await user.save();
+    const stan = nats.connect("ticketing", "abc", {
+      url: "http://localhost:4222",
+    }); //clientv
+    
+    //listen for connect events
+    stan.on("connect", () => {
+      console.log("Publisher connected to NATS");
+    
+      const data = [user.id, name, surname];
+    
+      stan.publish("user:created", data.toString(), () => {
+        console.log("event published..");
+      });
+    });
+    
     /*
     //generate jwt
     const userJwt = jwt.sign(

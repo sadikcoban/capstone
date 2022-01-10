@@ -2,10 +2,7 @@ package com.capstone.rezervation.rezervation.controller;
 
 import java.util.List;
 
-import com.capstone.rezervation.rezervation.entity.User;
 import com.capstone.rezervation.rezervation.entity.Vehicle;
-import com.capstone.rezervation.rezervation.repository.UserRepository;
-import com.capstone.rezervation.rezervation.service.UserService;
 import com.capstone.rezervation.rezervation.service.VehicleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +27,7 @@ public class VehicleController {
         Vehicle newVehicle = new Vehicle();
         newVehicle.setId(id);
         newVehicle.setPlate(plate);
-        newVehicle.setUserId(userId);
+        newVehicle.setUser_id(userId);
         return service.saveVehicle(newVehicle);
     }
 
@@ -38,7 +35,7 @@ public class VehicleController {
         Vehicle newVehicle = new Vehicle();
         newVehicle.setId(id);
         newVehicle.setPlate(plate);
-        newVehicle.setUserId(userId);
+        newVehicle.setUser_id(userId);
         return service.saveVehicle(newVehicle);
     }
 

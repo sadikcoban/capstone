@@ -23,8 +23,8 @@ public class Coupon {
     private String id;
     private String name;
     private String explanation;
-    private Double discountRate;
-    private String userId;
+    private Double discount_rate;
+    private String user_id;
 
     
 }

@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/auth-middleware";
 const router = express.Router();
 
 router.post(
-  "/api/users/signout",
+  "/api/auth/signout",
   authMiddleware,
   (req: Request, res: Response) => {
     req.session = null;

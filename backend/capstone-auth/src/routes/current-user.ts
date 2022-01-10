@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.get("/api/users/currentuser", (req: Request, res: Response) => {
+router.get("/api/auth/currentuser", (req: Request, res: Response) => {
   if (!req.session?.jwt) {
     return res.send({ currentUser: null });
   }

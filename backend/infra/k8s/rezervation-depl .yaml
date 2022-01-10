@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rezerv-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rezerv
+  template:
+    metadata:
+      labels:
+        app: rezerv
+    spec:
+      containers:
+        - name: rezerv
+          image: capstone/rezerv
+         # imagePullPolicy: Never
+         

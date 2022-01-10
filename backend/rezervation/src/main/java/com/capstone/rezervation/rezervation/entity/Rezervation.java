@@ -14,23 +14,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lots")
+@Table(name = "rezervations")
 
 public class Rezervation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int lotId;
-    private String start;
-    private String end;
-    private Double priceCalculated;
-    private String couponId;
-    private Double netPrice;
-    private String vehicleId;
-    private Status status;
-    private String userId;
+    private int start_hour;
+    private int end_hour;
+    private String date;
+    private Double price_calculated;
+    private String coupon_id;
+    private Double net_price;
+    private String vehicle_id;
+    private String status;
+    private String user_id;
 
-    public enum Status {
-        waiting, in_lot, expired, canceled, done
-    }
+    
 }

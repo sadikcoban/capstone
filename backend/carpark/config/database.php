@@ -6,7 +6,7 @@ $host = "127.0.0.1";
 $db = "carpark";
 
 if (env("PLATFORM") == "TEST"){
-    $host = '172.17.0.10';
+    $host = '172.17.0.7';
     $db = "CARPARK";
 }
 

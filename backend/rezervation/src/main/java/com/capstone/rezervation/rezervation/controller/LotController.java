@@ -27,13 +27,13 @@ public class LotController {
     @Autowired
     private LotService service;
 
-    public Lot addLotEvent(int id, String lotName, String floorName) {
+    public Lot addLotEvent(int id, int floor_id, String lotName) {
         Lot newLot = new Lot();
         newLot.setId(id);
+        newLot.setFloor_id(floor_id);
         newLot.setStatus(null);
-        newLot.setWrongPlate(null);
-        newLot.setLotName(lotName);
-        newLot.setFloorName(floorName);
+        newLot.setWrong_plate(null);
+        newLot.setLot_name(lotName);
         return service.saveLot(newLot);
     }
 
@@ -51,6 +51,13 @@ public class LotController {
       public Lot updateLot(@RequestBody Lot lot) {
       return service.updateLot(lot);
       }
+
+      public void updateLotEvent(int id, String status, String wrongPlate) {
+        Lot existingLot = service.getLotById(id);
+        existingLot.setStatus(status);
+        existingLot.setWrong_plate(wrongPlate);
+        service.updateLot(existingLot);
+    }
      
 
 }

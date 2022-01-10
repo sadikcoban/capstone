@@ -22,7 +22,7 @@ public class Vehicle {
     @Id
     private String id;
     private String plate;
-    private String userId;
+    private String user_id;
 
     
 }

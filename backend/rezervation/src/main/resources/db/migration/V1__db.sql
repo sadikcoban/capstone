@@ -5,12 +5,32 @@ CREATE TABLE IF NOT EXISTS rezervation.users (
   PRIMARY KEY (ID))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS rezervation.locations (
+  id INT NOT NULL,
+  start_hour INT NOT NULL,
+  end_hour INT NOT NULL,
+  capacity INT NOT NULL,
+  price_per_hour FLOAT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS rezervation.floors (
+  id INT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  location_id INT NOT NULL,
+
+  FOREIGN KEY (location_id) REFERENCES locations(id),
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS rezervation.lots (
   id INT NOT NULL,
+  floor_id INT NOT NULL,
   status VARCHAR(250) NULL,
-  wrong_plate VARCHAR(50),
-  floor_name VARCHAR(50),
-  lot_name VARCHAR(50),
+  wrong_plate VARCHAR(250),
+  lot_name VARCHAR(250),
+  FOREIGN KEY (floor_id) REFERENCES floors(id),
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
@@ -34,14 +54,15 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS rezervation.rezervations (
   id INT NOT NULL AUTO_INCREMENT,
-   user_id VARCHAR(250) NOT NULL,
-  start VARCHAR(250) NOT NULL,
-  end VARCHAR(250) NOT NULL,
-  price_calculated REAL NOT NULL,
-  coupon_id VARCHAR(250) NOT NULL,
-  net_price REAL NOT NULL,
+  user_id VARCHAR(250) NOT NULL,
+  start_hour INT NOT NULL,
+  end_hour INT NOT NULL,
+  date VARCHAR(250) NOT NULL,
+  price_calculated FLOAT NOT NULL,
+  coupon_id VARCHAR(250),
+  net_price FLOAT NOT NULL,
   vehicle_id VARCHAR(250) NOT NULL,
-  status ENUM("waiting", "in_lot", "expired", "canceled", "done"),
+  status VARCHAR(50) NOT NULL,
   lot_id INT NOT NULL,
 
   FOREIGN KEY (coupon_id) REFERENCES coupons(id),
@@ -52,4 +73,5 @@ CREATE TABLE IF NOT EXISTS rezervation.rezervations (
 ENGINE = InnoDB;
 
 
+  --status ENUM("waiting", "in_lot", "expired", "canceled", "done"):
 
