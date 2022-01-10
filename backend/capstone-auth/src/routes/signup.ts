@@ -46,7 +46,7 @@ router.post(
     });
     await user.save();
     const stan = nats.connect("ticketing", "abc", {
-      url: "http://localhost:4222",
+      url: "http://172.17.0.23:4222",
     }); //clientv
     
     //listen for connect events

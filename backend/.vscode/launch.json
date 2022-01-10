@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-RezervationApplication<rezervation>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.capstone.rezervation.rezervation.RezervationApplication",
+      "projectName": "rezervation",
+      "args": ""
+    }
+  ]
+}

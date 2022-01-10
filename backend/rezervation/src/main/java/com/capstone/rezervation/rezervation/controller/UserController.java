@@ -41,6 +41,10 @@ public class UserController {
     public List<User> addUsers(@RequestBody List<User> users){
         return service.saveUsers(users);
     }
+    @GetMapping("/user")
+    public List<User> getUsers(){
+        return service.getUsers();
+        }
 
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable String id){

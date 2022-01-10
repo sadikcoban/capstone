@@ -3,14 +3,15 @@ package com.capstone.rezervation.rezervation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import io.nats.*;
+
 import io.nats.streaming.*;
+import io.nats.streaming.MessageHandler;
+import io.nats.streaming.NatsStreaming;
+import io.nats.streaming.Options;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import java.util.concurrent.CountDownLatch;
-
-import com.capstone.rezervation.rezervation.controller.UserController;
 import com.capstone.rezervation.rezervation.entity.Floor;
 import com.capstone.rezervation.rezervation.entity.Location;
 import com.capstone.rezervation.rezervation.entity.Lot;
@@ -21,7 +22,6 @@ import com.capstone.rezervation.rezervation.repository.LocationRepository;
 import com.capstone.rezervation.rezervation.repository.LotRepository;
 import com.capstone.rezervation.rezervation.repository.UserRepository;
 import com.capstone.rezervation.rezervation.repository.VehicleRepository;
-import com.capstone.rezervation.rezervation.service.UserService;
 
 @SpringBootApplication
 public class RezervationApplication {
@@ -38,20 +38,24 @@ public class RezervationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RezervationApplication.class, args);
+		
 	}
 
 	@Bean
 	CommandLineRunner CommandLineRunner() {
 		return args -> {
+			Options opts = new Options.Builder().natsUrl("172.17.0.23:4222").build();
+			
 			// Create a connection factory
-			StreamingConnectionFactory cf = new StreamingConnectionFactory("ticketing", "bar");
-
+			StreamingConnection sc = NatsStreaming.connect("ticketing", "bar",opts);
 			// A StreamingConnection is a logical connection to the NATS streaming
 			// server. This API creates an underlying core NATS connection for
 			// convenience and simplicity. In most cases one would create a secure
 			// core NATS connection and pass it in via
 			// StreamingConnectionFactory.setNatsConnection(Connection nc)
-			StreamingConnection sc = cf.createConnection();
+			
+	
+			
 
 			// This simple synchronous publish API blocks until an acknowledgement
 			// is returned from the server. If no exception is thrown, the message

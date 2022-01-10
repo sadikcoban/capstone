@@ -10,6 +10,7 @@ use App\Models\Camera;
 use App\Models\CarparkLocation;
 use App\Models\Floor;
 use App\Models\Lot;
+use NatsPublisher;
 
 class CarparkLocationController extends Controller
 {
@@ -26,9 +27,8 @@ class CarparkLocationController extends Controller
     public function index($owner_id)
     {
         $locations = CarparkLocation::query()->where("owner_id", $owner_id)->get();
-        if(!$locations){
+        if (!$locations) {
             return failure_response(["Veri bulunamadı"]);
-   
         }
         return success_response($locations);
     }
@@ -36,7 +36,7 @@ class CarparkLocationController extends Controller
     public function show(int $id)
     {
         $location = CarparkLocation::query()->where("id", $id)->first();
-    
+
 
         if (!$location) {
             return failure_response(["Veri bulunamadı"]);
@@ -81,7 +81,7 @@ class CarparkLocationController extends Controller
                 "name" => $floor["floor_name"],
             ]);
 
-         
+
             $lotgroups = $floor["lot_groups"];
             foreach ($lotgroups as $lot_group) {
                 $new_camera = Camera::create([
@@ -100,6 +100,10 @@ class CarparkLocationController extends Controller
                         "coord_y1" => $lot["y1"],
                         "coord_y2" => $lot["y2"],
                     ]);
+
+                    $payload = strval($new_lot->id) . ",". strval($new_floor->id) .",". strval($lot["lot_name"]);
+                    
+                     publish("lot:created", $payload);
                 }
             }
         }
@@ -107,18 +111,14 @@ class CarparkLocationController extends Controller
         return success_response(["message" => "Başarılı"]);
     }
 
-    public function getNearLocations($city_id){
+    public function getNearLocations($city_id)
+    {
         $locations = CarparkLocation::query()
-                        ->where("city_id", $city_id)
-                        ->get();
-        if(!$locations){
+            ->where("city_id", $city_id)
+            ->get();
+        if (!$locations) {
             return failure_response(["message" => "Park Alanı Bulunamadı"]);
         }
         return success_response($locations);
-        
     }
-
-   
-
-
 }

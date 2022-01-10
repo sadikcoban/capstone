@@ -32,3 +32,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: capstone/rezerv
+      context: ./rezervation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*'
+            dest: .

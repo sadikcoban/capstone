@@ -32,3 +32,10 @@ spec:
                 name: carpark-srv
                 port:
                   number: 4001
+          - path: /api/rezervation/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: rezerv-srv
+                port:
+                  number: 4002
