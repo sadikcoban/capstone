@@ -58,6 +58,11 @@ class CarparkLocationController extends Controller
         $price_per_hour = $request->price_per_hour;
         $explanation = $request->explanation;
         $city_id = $request->city_id;
+        $name = $request->name;
+
+        $response = collect();
+        $res_floors = collect();
+        $res_lots = collect();
 
         $new_location = CarparkLocation::create([
             'owner_id' => $owner_id,
@@ -70,8 +75,20 @@ class CarparkLocationController extends Controller
             'is_active' => 1,
             'price_per_hour' => $price_per_hour,
             "explanation" => $explanation,
-            'city_id' => $city_id
+            'city_id' => $city_id,
+            'name' =>$name,
         ]);
+
+        $response->put("location",[
+            "id"=>$new_location->id,
+            "start_hour"=>$start_hour,
+            "end_hour"=>$end_hour,
+            "capacity"=>$capacity,
+            "price_per_hour"=>$price_per_hour,
+            "name"=>$name
+
+        ]);
+        
 
         $floors = $request->floors;
 
@@ -79,6 +96,11 @@ class CarparkLocationController extends Controller
             $new_floor = Floor::create([
                 "carpark_location_id" => $new_location->id,
                 "name" => $floor["floor_name"],
+            ]);
+            $res_floors->push([
+                "id"=>$new_floor->id,
+                "location_id"=>$new_location->id,
+                "name"=>$floor["floor_name"]
             ]);
 
 
@@ -94,6 +116,7 @@ class CarparkLocationController extends Controller
                     $new_lot = Lot::create([
                         "camera_id" => $new_camera->id,
                         "status" => "",
+                        "wrong_plate"=>"",
                         "name" => $lot["lot_name"],
                         "coord_x1" => $lot["x1"],
                         "coord_x2" => $lot["x2"],
@@ -101,14 +124,24 @@ class CarparkLocationController extends Controller
                         "coord_y2" => $lot["y2"],
                     ]);
 
-                    $payload = strval($new_lot->id) . ",". strval($new_floor->id) .",". strval($lot["lot_name"]);
+                    $res_lots->push([
+                        "id"=>$new_lot->id,
+                        "floor_id"=>$new_floor->id,
+                        "name"=>$lot["lot_name"]
+                    ]);
+
+
                     
-                     publish("lot:created", $payload);
+
                 }
             }
         }
 
-        return success_response(["message" => "Başarılı"]);
+        $response->put("floors",$res_floors);
+        $response->put("lots",$res_lots);
+
+
+        return success_response($response);
     }
 
     public function getNearLocations($city_id)

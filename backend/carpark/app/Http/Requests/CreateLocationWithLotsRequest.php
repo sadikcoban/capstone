@@ -7,6 +7,7 @@ class CreateLocationWithLotsRequest extends FormRequest
     public  function rules()
     {
         return [
+            'name' => "required",
             'owner_id' => 'required|exists:owners,id',
             'address'  => 'required',
             'capacity' => 'integer|required',
@@ -40,6 +41,7 @@ class CreateLocationWithLotsRequest extends FormRequest
     public  function messages()
     {
         return [
+            'name.required'    => "Lütfen Alan Adını Giriniz!",
             'lon.required'    => "Lütfen Longtitude Alanını Giriniz!",
             'lon.string'       => "Geçersiz Longtitude!",
             'lat.required'    => "Lütfen Latitude Alanını Giriniz!",

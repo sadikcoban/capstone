@@ -20,6 +20,7 @@ class Lot extends Model
      */
     protected $fillable = [
         'camera_id',
+        'wrong_plate',
         'status',
         'name',
         'coord_x1',

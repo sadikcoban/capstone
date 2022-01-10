@@ -1,5 +1,10 @@
 <?php
 
+use Basis\Nats\Client;
+use Basis\Nats\Configuration;
+use NatsStreaming\Connection;
+use NatsStreaming\ConnectionOptions;
+
 /*
 function publish($subject, $data)
 {
@@ -29,14 +34,21 @@ function publish($subject, $data)
 
 function publish($subject, $data)
 {
-  
-    $options = new \NatsStreaming\ConnectionOptions();
+    print_r("EEEE");
+
+
+    $options = new ConnectionOptions();
+    
     $options->setClientID("ticketing");
-    $options->setClusterID(generateRandomString());
-    $c = new \NatsStreaming\Connection($options);
+    $options->setClusterID("asd");
+    print_r("sdsd");
+    
+    $c = new Connection();
 
-    $c->connect();
 
+   
+
+    $c->connect(10);
     // Publish
     $r = $c->publish($subject, $data);
 }

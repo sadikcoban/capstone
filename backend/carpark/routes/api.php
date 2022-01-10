@@ -36,6 +36,12 @@ $router->group(["prefix"=>"/api/carpark"], function () use ($router){
 
     });
 
+    $router->group(["prefix" => "/lot"], function () use($router){
+        $router->post('/update', "\App\Http\Controllers\LotController@update");
+
+
+    });
+
 
 
 });

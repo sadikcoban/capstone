@@ -19,6 +19,7 @@ class CarparkLocation extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'owner_id',
         'address',
         'city_id',

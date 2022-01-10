@@ -20,6 +20,7 @@ class CreateCarparkLocationsTable extends Migration
                 ->constrained('owners')
                 ->onUpdate('CASCADE')
                 ->onDelete('RESTRICT');
+                $table->string("name");
             $table->integer('capacity');
             $table->integer('start_hour');
             $table->integer('end_hour');

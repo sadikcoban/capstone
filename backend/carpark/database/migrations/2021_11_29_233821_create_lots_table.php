@@ -21,6 +21,7 @@ class CreateLotsTable extends Migration
                     ->onUpdate('CASCADE')
                     ->onDelete('RESTRICT');
             $table->string('status')->nullable();
+            $table->string('wrong_plate')->nullable();
             $table->string('name');
             $table->double('coord_x1');
             $table->double('coord_x2');
