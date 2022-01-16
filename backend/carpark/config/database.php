@@ -3,11 +3,9 @@
 use Illuminate\Support\Str;
 
 $host = "127.0.0.1";
-$db = "carpark";
 
 if (env("PLATFORM") == "TEST"){
-    $host = '172.17.0.7';
-    $db = "CARPARK";
+    $host = '172.17.0.13';
 }
 
 return [
@@ -23,7 +21,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => 'postgres-srv',
+            'host' => 'postgres',
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
@@ -44,8 +42,8 @@ return [
             'driver' => 'pgsql',
             'host' => $host,
             'port' => '5432',
-            'database' => $db,
-            'username' => 'postgres',
+            'database' => "carpark",
+            'username' => 'carpark',
             'password' => '123456',
             'charset' => 'utf8',
             'prefix' => '',

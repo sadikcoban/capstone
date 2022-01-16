@@ -39,3 +39,4 @@ spec:
                 name: rezerv-srv
                 port:
                   number: 4002
+  

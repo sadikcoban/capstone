@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capstone-ingress-service
+  template:
+    metadata:
+      labels:
+        app: capstone-ingress-service
+    spec:
+      containers:
+        - name: capstone-ingress-service
+          image: capstone-ingress-service
+         # imagePullPolicy: Never
+         

@@ -33,7 +33,7 @@ const start = async () => {
     throw new Error("JWT_KEY must be defined");
   }
   try {
-    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    await mongoose.connect("mongodb://capstone-auth-mongo-srv:27017/auth");
     console.log("conected to mongodb");
   } catch (error) {
     console.error(error);

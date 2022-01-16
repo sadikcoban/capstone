@@ -47,13 +47,17 @@ public class RezervationController {
 
         // iterate trough hours, if an hour is available for any lot for that date say
         // yes give lot list to function
+        ArrayList list = new ArrayList();
         Location location = locationService.findById(location_id);
+        if(location == null){
+            return list;
+        }
         int start_hour = location.getStart_hour();
         int end_hour = location.getEnd_hour();
         List<Integer> floor_ids_of_loc = floorService.getAllIDSOfLocation(location_id);
         List<Lot> lots = locationService.getLotsOfLocation(floor_ids_of_loc);
 
-        ArrayList list = new ArrayList();
+        
 
         for (int i = start_hour; i <= end_hour; i++) {
 

@@ -31,7 +31,7 @@ router.post(
     });
     await vehicle.save();
     const stan = nats.connect("ticketing", "def", {
-      url: "http://172.17.0.23:4222",
+      url: "http://172.17.0.10:4222",
     }); //clientv
 
     //listen for connect events

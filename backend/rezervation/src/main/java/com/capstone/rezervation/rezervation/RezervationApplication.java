@@ -44,7 +44,7 @@ public class RezervationApplication {
 	@Bean
 	CommandLineRunner CommandLineRunner() {
 		return args -> {
-			Options opts = new Options.Builder().natsUrl("172.17.0.23:4222").build();
+			Options opts = new Options.Builder().natsUrl("172.17.0.10:4222").build();
 			
 			// Create a connection factory
 			StreamingConnection sc = NatsStreaming.connect("ticketing", "bar",opts);

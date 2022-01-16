@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class OwnerController {
     @Autowired
     private LotService service;
-
+/*
     public Lot addLotEvent(int id, int floor_id, String lotName) {
         Lot newLot = new Lot();
         newLot.setId(id);
@@ -57,7 +57,7 @@ public class OwnerController {
         existingLot.setStatus(status);
         existingLot.setWrong_plate(wrongPlate);
         service.updateLot(existingLot);
-    }
+    }*/
      
 
 }
