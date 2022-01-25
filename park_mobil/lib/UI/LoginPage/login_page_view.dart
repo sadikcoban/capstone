@@ -34,13 +34,12 @@ class LoginPageView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             StatikTexts.yaziText(
-                                text: "GELGEL'E HOŞGELDİN SİK KIRIĞI1",
-                                size: 40,
-                                weight: FontWeight.bold,
-                                yaziRengi: Renkler.textAktif,
-                                ),
+                              text: "GELGEL'E HOŞGELDİN",
+                              size: 40,
+                              weight: FontWeight.bold,
+                              yaziRengi: Renkler.textAktif,
+                            ),
                             const SizedBox(
                               height: 70,
                             ),

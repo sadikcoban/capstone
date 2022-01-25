@@ -37,6 +37,7 @@ class StaticWidgetClass {
       '$text',
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
+      textScaleFactor:1,
       style: GoogleFonts.roboto(
         color: color,
         fontWeight: fontWeight,

@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import '../UI/Anasayfa/anasayfa_view.dart';
 import '../UI/Istatistikler/istatistikler_view.dart';
@@ -21,21 +22,21 @@ import '../main.dart';
 class Routes {
   static const String mainClass = '/';
   static const String anasayfa = '/Anasayfa';
-  static const String rezervasyon = '/Rezervasyon';
-  static const String parkAlaniView = '/park-alani-view';
-  static const String parklarView = '/parklar-view';
-  static const String yeniOtopark = '/yeni-otopark';
   static const String istatistiklerView = '/istatistikler-view';
   static const String loginPageView = '/login-page-view';
+  static const String parklarView = '/parklar-view';
+  static const String yeniOtopark = '/yeni-otopark';
+  static const String rezervasyon = '/Rezervasyon';
+  static const String parkAlaniView = '/park-alani-view';
   static const all = <String>{
     mainClass,
     anasayfa,
-    rezervasyon,
-    parkAlaniView,
-    parklarView,
-    yeniOtopark,
     istatistiklerView,
     loginPageView,
+    parklarView,
+    yeniOtopark,
+    rezervasyon,
+    parkAlaniView,
   };
 }
 
@@ -45,12 +46,12 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.mainClass, page: MainClass),
     RouteDef(Routes.anasayfa, page: Anasayfa),
-    RouteDef(Routes.rezervasyon, page: Rezervasyon),
-    RouteDef(Routes.parkAlaniView, page: ParkAlaniView),
-    RouteDef(Routes.parklarView, page: ParklarView),
-    RouteDef(Routes.yeniOtopark, page: YeniOtopark),
     RouteDef(Routes.istatistiklerView, page: IstatistiklerView),
     RouteDef(Routes.loginPageView, page: LoginPageView),
+    RouteDef(Routes.parklarView, page: ParklarView),
+    RouteDef(Routes.yeniOtopark, page: YeniOtopark),
+    RouteDef(Routes.rezervasyon, page: Rezervasyon),
+    RouteDef(Routes.parkAlaniView, page: ParkAlaniView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -67,15 +68,15 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    Rezervasyon: (data) {
+    IstatistiklerView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const Rezervasyon(),
+        builder: (context) => const IstatistiklerView(),
         settings: data,
       );
     },
-    ParkAlaniView: (data) {
+    LoginPageView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const ParkAlaniView(),
+        builder: (context) => const LoginPageView(),
         settings: data,
       );
     },
@@ -91,15 +92,15 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    IstatistiklerView: (data) {
+    Rezervasyon: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const IstatistiklerView(),
+        builder: (context) => const Rezervasyon(),
         settings: data,
       );
     },
-    LoginPageView: (data) {
+    ParkAlaniView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const LoginPageView(),
+        builder: (context) => const ParkAlaniView(),
         settings: data,
       );
     },

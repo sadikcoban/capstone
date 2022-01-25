@@ -1,0 +1,1 @@
+doskey kubectl=minikube kubectl -- $*

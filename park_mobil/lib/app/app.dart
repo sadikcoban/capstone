@@ -5,20 +5,26 @@ import 'package:park_mobil/UI/ParkAlani/Parklar/parklar_view.dart';
 import 'package:park_mobil/UI/ParkAlani/YeniOtopark/yeni_otopark.dart';
 import 'package:park_mobil/UI/ParkAlani/park_alani_view.dart';
 import 'package:park_mobil/UI/Rezervasyon/rezervasyon_view.dart';
-import 'package:park_mobil/main.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../main.dart';
 
 @StackedApp(
   routes: [
     MaterialRoute(page: MainClass, initial: true),
     MaterialRoute(page: Anasayfa),
-    MaterialRoute(page: Rezervasyon),
-    MaterialRoute(page: ParkAlaniView),
-    MaterialRoute(page: ParklarView),
-    MaterialRoute(page: YeniOtopark),
     MaterialRoute(page: IstatistiklerView),
     MaterialRoute(page: LoginPageView),
+    MaterialRoute(page: ParklarView),
+    MaterialRoute(page: YeniOtopark),
+    MaterialRoute(page: Rezervasyon),
+    MaterialRoute(page: ParkAlaniView),
+
+
+
+
+
   ],
   dependencies: [
     LazySingleton(
